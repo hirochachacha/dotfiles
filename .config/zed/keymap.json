@@ -1,0 +1,123 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      "space d": "pane::CloseActiveItem",
+      "space l": "pane::ActivateNextItem",
+      "space h": "pane::ActivatePrevItem",
+      "space t": "file_finder::Toggle",
+      "space y": ["workspace::SendKeystrokes", "\" * y"],
+      "space p": ["workspace::SendKeystrokes", "\" * p"],
+      "space e": ["workspace::SendKeystrokes", "cmd-? i / t a b enter"],
+
+      "space shift-t": "workspace::NewTerminal",
+      "space shift-r": ["task::Spawn", { "task_name": "project run" }],
+
+      "ctrl-/": "vim::ToggleComments",
+
+      "g _": "editor::SelectAllMatches", // workaround for reassign
+      "g a": ["workspace::SendKeystrokes", "g _ b escape"],
+      "g e": "editor::Rename",
+
+      ", <": "editor::FindAllReferences",
+      ", a": ["workspace::SendKeystrokes", "g _ b escape"],
+      ", e": "editor::Rename",
+      ", d": "editor::GoToDefinition",
+      ", shift-d": "editor::GoToDeclaration",
+      ", y": "editor::GoToTypeDefinition",
+      ", shift-i": "editor::GoToImplementation",
+
+      "ctrl-n": "editor::GoToDiagnostic",
+      "ctrl-p": "editor::GoToPrevDiagnostic"
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "space y": ["workspace::SendKeystrokes", "cmd-c y"], // workaround for "*y
+      "shift-y": ["workspace::SendKeystrokes", "y g v escape"]
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "ctrl-k": "editor::DeleteToEndOfLine"
+    }
+  },
+  {
+    "context": "Editor && renaming",
+    "bindings": {
+      // "enter": "editor::ConfirmRename"
+    }
+  },
+  // {
+  //   "context": "AssistantPanel",
+  //   "bindings": {
+  //     "space e": ["workspace::SendKeystrokes", "itest"]
+  //   }
+  // },
+  {
+    "context": "Terminal",
+    "bindings": {
+      // window related commands (ctrl-w X)
+      "ctrl-w": null,
+      "ctrl-w left": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w right": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w up": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w down": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-w ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-w ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-w ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-w ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-w shift-left": ["workspace::SwapPaneInDirection", "Left"],
+      "ctrl-w shift-right": ["workspace::SwapPaneInDirection", "Right"],
+      "ctrl-w shift-up": ["workspace::SwapPaneInDirection", "Up"],
+      "ctrl-w shift-down": ["workspace::SwapPaneInDirection", "Down"],
+      "ctrl-w shift-h": ["workspace::SwapPaneInDirection", "Left"],
+      "ctrl-w shift-l": ["workspace::SwapPaneInDirection", "Right"],
+      "ctrl-w shift-k": ["workspace::SwapPaneInDirection", "Up"],
+      "ctrl-w shift-j": ["workspace::SwapPaneInDirection", "Down"],
+      "ctrl-w g t": "pane::ActivateNextItem",
+      "ctrl-w ctrl-g t": "pane::ActivateNextItem",
+      "ctrl-w g shift-t": "pane::ActivatePrevItem",
+      "ctrl-w ctrl-g shift-t": "pane::ActivatePrevItem",
+      "ctrl-w w": "workspace::ActivateNextPane",
+      "ctrl-w ctrl-w": "workspace::ActivateNextPane",
+      "ctrl-w p": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-p": "workspace::ActivatePreviousPane",
+      "ctrl-w shift-w": "workspace::ActivatePreviousPane",
+      "ctrl-w ctrl-shift-w": "workspace::ActivatePreviousPane",
+      "ctrl-w v": "pane::SplitVertical",
+      "ctrl-w ctrl-v": "pane::SplitVertical",
+      "ctrl-w s": "pane::SplitHorizontal",
+      "ctrl-w shift-s": "pane::SplitHorizontal",
+      "ctrl-w ctrl-s": "pane::SplitHorizontal",
+      "ctrl-w c": "pane::CloseAllItems",
+      "ctrl-w ctrl-c": "pane::CloseAllItems",
+      "ctrl-w q": "pane::CloseAllItems",
+      "ctrl-w ctrl-q": "pane::CloseAllItems",
+      "ctrl-w o": "workspace::CloseInactiveTabsAndPanes",
+      "ctrl-w ctrl-o": "workspace::CloseInactiveTabsAndPanes",
+      "ctrl-w n": "workspace::NewFileSplitHorizontal",
+      "ctrl-w ctrl-n": "workspace::NewFileSplitHorizontal",
+      "ctrl-w d": "editor::GoToDefinitionSplit",
+      "ctrl-w g d": "editor::GoToDefinitionSplit",
+      "ctrl-w shift-d": "editor::GoToTypeDefinitionSplit",
+      "ctrl-w g shift-d": "editor::GoToTypeDefinitionSplit",
+      "ctrl-w space": "editor::OpenExcerptsSplit",
+      "ctrl-w g space": "editor::OpenExcerptsSplit",
+      "ctrl-6": "pane::AlternateFile"
+    }
+  }
+]

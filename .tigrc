@@ -1,0 +1,7 @@
+bind main g move-first-line
+bind generic g move-first-line
+bind main G move-last-line
+bind generic G move-last-line
+bind generic a !git commit --amend
+bind generic c !git commit
+set vertical-split = horizontal
