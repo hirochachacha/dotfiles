@@ -33,42 +33,6 @@ else:
 
 gocd(){ cd $(find $(go env GOPATH)/src $(go env GOROOT)/src -type d -name .hg -prune -o -type d -name .git -prune -o -type d -name .bzr -prune -o -type d -name "$1" -print | peco --select-1 || echo $PWD); }
 
-setopt inc_append_history
-setopt share_history
-setopt autocd
-setopt complete_aliases
-setopt hist_ignore_space
-setopt hist_ignore_dups
-
-WORDCHARS=${WORDCHARS/\/}
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=$HISTSIZE
-HISTORY_IGNORE="(history|pwd|exit|ls|ls *|j *)"
-
-zshaddhistory() {
-  emulate -L zsh
-  [[ ${1%%$'\n'} != ${~HISTORY_IGNORE} ]]
-}
-
-bindkey -e
-bindkey \^U backward-kill-line
-
-magic-enter(){
-  if [[ -z $BUFFER ]]
-  then
-    printf "\033[H\033[2J" && eza --icons --git --time-style relative -snew -G -l
-    # clear && ls -l
-  else
-  fi
-
-  zle accept-line
-}
-
-zle -N magic-enter
-
-bindkey "^M" magic-enter
-
 alias j=z
 alias cd=z
 alias vi=nvim
@@ -76,15 +40,15 @@ alias cat=bat
 alias find=fd
 alias ag=ripgrep
 
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+eval "$(zoxide init bash)"
+eval "$(starship init bash)"
 
-source <(fzf --zsh)
+source <(fzf --bash)
 
 #
 # Local configuration file.
 #
 
-if [[ -f "$HOME/.zshrc.local" ]]; then
-  source "$HOME/.zshrc.local"
+if [[ -f "$HOME/.bashrc.local" ]]; then
+  source "$HOME/.bashrc.local"
 fi
