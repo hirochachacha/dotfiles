@@ -1,4 +1,20 @@
 #
+# Homebrew 
+#
+
+if [[ "$OSTYPE" == darwin* ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+#
+# Paths
+#
+
+export PATH="$HOME/bin:$HOME/.deno/bin:$HOME/.go/bin:$HOME/.cargo/bin:$PATH"
+
+#
 # Browser
 #
 
@@ -28,16 +44,6 @@ export LANG='en_US.UTF-8'
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
 export LESS='-F -g -i -M -R -S -w -X -z-4'
-
-#
-# Paths
-#
-
-if [[ "$OSTYPE" == darwin* ]]; then
-  export PATH="$HOME/bin:$HOME/.deno/bin:$HOME/.go/bin:$HOME/.cargo/bin:/opt/homebrew/bin:$PATH"
-else
-  export PATH="$HOME/bin:$HOME/.deno/bin:$HOME/.go/bin:$HOME/.cargo/bin:$PATH"
-fi
 
 #
 # Others
