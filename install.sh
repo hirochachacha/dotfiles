@@ -1,4 +1,6 @@
-#!/usr/bin/env bash -ex
+#!/usr/bin/env bash
+
+set -ex
 
 DOTFILES_DIR="$HOME/dotfiles"
 
@@ -16,7 +18,7 @@ install_packages() {
     if [[ "$OSTYPE" == darwin* ]]; then
         brew bundle install --verbose --file="$DOTFILES_DIR/Brewfile.darwin"
     else
-        cat "$DOTFILES_DIR/Flatpakfile" | xargs flatpak install flathub
+        cat "$DOTFILES_DIR/Flatpakfile" | xargs flatpak -y install flathub
     fi
 }
 
