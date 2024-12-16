@@ -1,5 +1,7 @@
 #!/usr/bin/env bash -ex
 
+DOTFILES_DIR="$HOME/dotfiles"
+
 install_packages() {
     if ! command -v brew &> /dev/null; then
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -8,13 +10,13 @@ install_packages() {
     export HOMEBREW_NO_AUTO_UPDATE=1
 
     # Install CLI packages
-    brew bundle install --verbose --file=Brewfile
+    brew bundle install --verbose --file="$DOTFILES_DIR/Brewfile"
 
     # Install GUI packages
     if [[ "$OSTYPE" == darwin* ]]; then
-        brew bundle install --verbose --file=Brewfile.darwin
+        brew bundle install --verbose --file="$DOTFILES_DIR/Brewfile.darwin"
     else
-        cat Flatpakfile | xargs flatpak install flathub
+        cat "$DOTFILES_DIR/Flatpakfile" | xargs flatpak install flathub
     fi
 }
 
@@ -60,13 +62,13 @@ if [[ "$OSTYPE" != darwin* ]]; then
     fi
 fi
 
-if [ ! -d "$HOME/dotfiles" ]; then
-  git clone --depth 1 https://github.com/hirochachacha/dotfiles.git "$HOME/dotfiles"
+if [ ! -d "$DOTFILES_DIR" ]; then
+  git clone --depth 1 https://github.com/hirochachacha/dotfiles.git "$DOTFILES_DIR"
 fi
 
 install_packages
 
-create_hardlinks "$HOME/dotfiles" "$HOME"
+create_hardlinks "$DOTFILES_DIR" "$HOME"
 
 # Install fonts
 if [[ "$OSTYPE" == darwin* ]]; then
