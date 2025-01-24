@@ -74,7 +74,7 @@ alias cd=z
 alias vi=nvim
 alias cat=bat
 alias find=fd
-alias ag=ripgrep
+alias ag=rg
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
