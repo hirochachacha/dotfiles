@@ -8,23 +8,20 @@
 # Optional parameters:
 # @raycast.icon 🤖
 
-set appName to "Brave Browser"
-set bundleID to "com.brave.Browser"
+# set appChrome to "Google Chrome"
+# set appBrave to "Brave Browser"
+set appChrome to "Brave Browser"
+set appBrave to "Google Chrome"
 
 tell application "System Events"
-	set isRunning to (exists (processes where bundle identifier is bundleID))
+	set frontApp to name of first application process whose frontmost is true
 end tell
 
-if isRunning then
-	tell application "System Events"
-		set isFrontmost to (frontmost of process appName)
-	end tell
-
-	if isFrontmost then
-		tell application "System Events" to set visible of process appName to false
-	else
-		tell application id bundleID to activate
-	end if
+if frontApp is appChrome then
+	tell application appBrave to activate
+	tell application "System Events" to set visible of process appChrome to false
+else if frontApp is appBrave then
+	tell application "System Events" to set visible of process appBrave to false
 else
-	tell application id bundleID to activate
+  tell application appChrome to activate
 end if

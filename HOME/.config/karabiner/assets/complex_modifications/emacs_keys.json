@@ -17,6 +17,14 @@
                 "^org\\.wezfurlong\\.wezterm$",
                 "^com\\.github\\.wez\\.wezterm$"
               ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
             }
           ]
         },
@@ -32,6 +40,14 @@
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
                 "^com\\.github\\.wez\\.wezterm$"
+              ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
               ]
             }
           ]
@@ -52,6 +68,14 @@
                 "^org\\.wezfurlong\\.wezterm$",
                 "^com\\.github\\.wez\\.wezterm$"
               ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
             }
           ]
         },
@@ -71,6 +95,14 @@
                 "^org\\.wezfurlong\\.wezterm$",
                 "^com\\.github\\.wez\\.wezterm$"
               ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
             }
           ]
         },
@@ -86,6 +118,14 @@
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
                 "^com\\.github\\.wez\\.wezterm$"
+              ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
               ]
             }
           ]
