@@ -24,6 +24,7 @@ install_packages() {
 
   # Install GUI packages
   if [[ "$OSTYPE" == darwin* ]]; then
+    brew install mas
     brew bundle install --verbose --file="$DOTFILES_DIR/Brewfile.darwin"
   else
     if ! command -v flatpak &>/dev/null; then
