@@ -87,6 +87,8 @@ end)
 
 
 return {
+  send_composed_key_when_left_alt_is_pressed = false,
+  send_composed_key_when_right_alt_is_pressed = false,
   font = wezterm.font("GoMono Nerd Font"),
   use_ime = true,
   font_size = 16.0,
@@ -142,4 +144,3 @@ return {
     },
   },
 }
-

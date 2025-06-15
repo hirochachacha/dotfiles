@@ -2,8 +2,56 @@
   "title": "Emacs-style editing keys for macOS (excluding Terminal, iTerm2, WezTerm)",
   "rules": [
     {
-      "description": "Emacs-style Ctrl+A/E/K/U/W except in Terminal, iTerm2, and WezTerm",
+      "description": "Emacs-style keybinds except in Terminal, iTerm2, and WezTerm",
       "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "f", "modifiers": { "mandatory": ["control"] } },
+          "to": [ { "key_code": "right_arrow" } ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^org\\.wezfurlong\\.wezterm$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "b", "modifiers": { "mandatory": ["control"] } },
+          "to": [ { "key_code": "left_arrow" } ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^org\\.wezfurlong\\.wezterm$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        },
         {
           "type": "basic",
           "from": { "key_code": "a", "modifiers": { "mandatory": ["control"] } },
@@ -110,6 +158,108 @@
           "type": "basic",
           "from": { "key_code": "w", "modifiers": { "mandatory": ["control"] } },
           "to": [ { "key_code": "delete_or_backspace", "modifiers": ["option"] } ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^org\\.wezfurlong\\.wezterm$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "b", "modifiers": { "mandatory": ["option"] } },
+          "to": [ { "key_code": "left_arrow", "modifiers": ["option"] } ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^org\\.wezfurlong\\.wezterm$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "f", "modifiers": { "mandatory": ["option"] } },
+          "to": [ { "key_code": "right_arrow", "modifiers": ["option"] } ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^org\\.wezfurlong\\.wezterm$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "d", "modifiers": { "mandatory": ["control"] } },
+          "to": [
+            { "key_code": "right_arrow" },
+            { "key_code": "delete_or_backspace" }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^org\\.wezfurlong\\.wezterm$",
+                "^com\\.github\\.wez\\.wezterm$"
+              ]
+            },
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": { "key_code": "d", "modifiers": { "mandatory": ["option"] } },
+          "to": [
+            { "key_code": "right_arrow", "modifiers": ["shift", "option"] },
+            { "key_code": "delete_or_backspace" }
+          ],
           "conditions": [
             {
               "type": "frontmost_application_unless",
