@@ -31,7 +31,13 @@ else:
   ");
 }
 
-gocd(){ cd $(find $(go env GOPATH)/src $(go env GOROOT)/src -type d -name .hg -prune -o -type d -name .git -prune -o -type d -name .bzr -prune -o -type d -name "$1" -print | peco --select-1 || echo $PWD); }
+denocd() {
+  cd $(\find $(deno info --json | jq -r .denoDir) -type d -name .hg -prune -o -type d -name .git -prune -o -type d -name .bzr -prune -o -type d -name "$1" -print | fzf --select-1 || echo $PWD);
+}
+
+gocd(){
+  cd $(\find $(go env GOPATH)/src $(go env GOROOT)/src -type d -name .hg -prune -o -type d -name .git -prune -o -type d -name .bzr -prune -o -type d -name "$1" -print | fzf --select-1 || echo $PWD);
+}
 
 setopt inc_append_history
 setopt share_history
