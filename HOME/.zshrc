@@ -79,7 +79,7 @@ alias j=z
 alias cd=z
 alias vi=nvim
 alias cat=bat
-alias find=fd
+# alias find=fd
 alias ag=rg
 
 eval "$(zoxide init zsh)"

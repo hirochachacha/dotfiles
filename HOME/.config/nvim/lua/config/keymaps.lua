@@ -9,18 +9,34 @@ vim.keymap.set("i", "<C-a>", "<HOME>", { silent = true })
 vim.keymap.set("i", "<C-e>", "<END>", { silent = true })
 
 -- vimperator like key bindings
-vim.keymap.set("n", "<Space>d", ":q!<CR>", { silent = true })
-vim.keymap.set("n", "<Space>o", ":Explore<CR>", { silent = true })
-vim.keymap.set("n", "<Space>t", ":Texplore<CR>", { silent = true })
+vim.keymap.set("n", "<Space>q", ":q!<CR>", { silent = true })
+vim.keymap.set("n", "<Space>d", function()
+  local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+  if #bufs == 1 then
+    return vim.cmd("q!")
+  end
+
+  local cur = vim.api.nvim_get_current_buf()
+  for i, b in ipairs(bufs) do
+    if b.bufnr == cur then
+      local target = bufs[i + 1] or bufs[i - 1]
+      if target then
+        vim.api.nvim_set_current_buf(target.bufnr)
+      end
+      break
+    end
+  end
+  vim.cmd("bd! " .. cur)
+end, { desc = "Smart buffer close (or quit)" })
+vim.keymap.set("n", "<Space>e", ":Explore<CR>", { silent = true })
+vim.keymap.set("n", "<Space>t", ":enew<CR>", { silent = true })
 vim.keymap.set("n", "<Space>r", ":edit!<CR>", { silent = true })
-vim.keymap.set("n", "<Space>l", "gt", { silent = true })
-vim.keymap.set("n", "<Space>h", "gT", { silent = true })
+vim.keymap.set("n", "<Space>l", ":bnext<CR>", { silent = true })
+vim.keymap.set("n", "<Space>h", ":bprev<CR>", { silent = true })
 vim.keymap.set("n", "<Space>y", '"+y', { silent = true })
 vim.keymap.set("n", "<Space>p", '"+p', { silent = true })
 vim.keymap.set("v", "<Space>y", '"+y', { silent = true })
 vim.keymap.set("v", "<Space>p", '"+p', { silent = true })
-vim.keymap.set("n", "<C-l>", ":tabmove+1<CR>", { silent = true })
-vim.keymap.set("n", "<C-h>", ":tabmove-1<CR>", { silent = true })
 
 -- quickfix
 vim.keymap.set("n", "<C-j>", ":Cnext<CR>", { silent = true })
