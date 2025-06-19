@@ -15,7 +15,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -39,7 +40,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -63,7 +65,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -87,7 +90,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -114,7 +118,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -141,7 +146,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -165,7 +171,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -189,7 +196,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -213,7 +221,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -240,7 +249,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {
@@ -267,7 +277,8 @@
                 "^com\\.apple\\.Terminal$",
                 "^com\\.googlecode\\.iterm2$",
                 "^org\\.wezfurlong\\.wezterm$",
-                "^com\\.github\\.wez\\.wezterm$"
+                "^com\\.github\\.wez\\.wezterm$",
+                "^dev\\.zed\\.Zed$"
               ]
             },
             {

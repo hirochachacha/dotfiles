@@ -9,33 +9,21 @@
   {
     "context": "VimControl && !menu",
     "bindings": {
+      "space q": "zed::Quit",
       "space d": "pane::CloseActiveItem",
       "space l": "pane::ActivateNextItem",
-      "space h": "pane::ActivatePrevItem",
-      "space t": "file_finder::Toggle",
+      "space h": "pane::ActivatePreviousItem",
       "space y": ["workspace::SendKeystrokes", "\" * y"],
       "space p": ["workspace::SendKeystrokes", "\" * p"],
       "space e": ["workspace::SendKeystrokes", "cmd-? i / t a b enter"],
+      "space space": "file_finder::Toggle",
 
-      "space shift-t": "workspace::NewTerminal",
-      "space shift-r": ["task::Spawn", { "task_name": "project run" }],
+      "space t": "workspace::NewTerminal",
 
       "ctrl-/": "vim::ToggleComments",
 
-      "g _": "editor::SelectAllMatches", // workaround for reassign
-      "g a": ["workspace::SendKeystrokes", "g _ b escape"],
-      "g e": "editor::Rename",
-
-      ", <": "editor::FindAllReferences",
-      ", a": ["workspace::SendKeystrokes", "g _ b escape"],
-      ", e": "editor::Rename",
-      ", d": "editor::GoToDefinition",
-      ", shift-d": "editor::GoToDeclaration",
-      ", y": "editor::GoToTypeDefinition",
-      ", shift-i": "editor::GoToImplementation",
-
       "ctrl-n": "editor::GoToDiagnostic",
-      "ctrl-p": "editor::GoToPrevDiagnostic"
+      "ctrl-p": "editor::GoToPreviousDiagnostic"
     }
   },
   {
@@ -90,8 +78,8 @@
       "ctrl-w shift-j": ["workspace::SwapPaneInDirection", "Down"],
       "ctrl-w g t": "pane::ActivateNextItem",
       "ctrl-w ctrl-g t": "pane::ActivateNextItem",
-      "ctrl-w g shift-t": "pane::ActivatePrevItem",
-      "ctrl-w ctrl-g shift-t": "pane::ActivatePrevItem",
+      "ctrl-w g shift-t": "pane::ActivatePreviousItem",
+      "ctrl-w ctrl-g shift-t": "pane::ActivatePreviousItem",
       "ctrl-w w": "workspace::ActivateNextPane",
       "ctrl-w ctrl-w": "workspace::ActivateNextPane",
       "ctrl-w p": "workspace::ActivatePreviousPane",

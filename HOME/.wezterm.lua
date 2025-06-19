@@ -36,11 +36,6 @@ return {
 	},
 	keys = {
 		{
-			key = "t",
-			mods = "SUPER",
-			action = wezterm.action.EmitEvent("new-tab"),
-		},
-		{
 			key = "LeftArrow",
 			mods = "SUPER",
 			action = wezterm.action.ActivateTabRelative(-1),
