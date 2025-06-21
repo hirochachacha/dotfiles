@@ -798,6 +798,13 @@ function M.open()
   end
 
   local files_by_section = M.categorize_files(files)
+  
+  -- Check if there are any files to display
+  if #files_by_section.staged == 0 and #files_by_section.unstaged == 0 and #files_by_section.untracked == 0 then
+    vim.notify("No staged, unstaged, or untracked files", vim.log.levels.INFO)
+    return
+  end
+  
   local content_data = M.create_content(files_by_section)
 
   -- Check if Normal has transparent background
