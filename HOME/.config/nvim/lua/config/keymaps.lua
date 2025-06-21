@@ -11,10 +11,21 @@ vim.keymap.set("i", "<C-e>", "<END>", { silent = true })
 -- vimperator like key bindings
 vim.keymap.set("n", "<Space>q", ":q!<CR>", { silent = true })
 vim.keymap.set("n", "<Space>d", function()
-  local win_count = #vim.api.nvim_list_wins()
+  -- Count only normal windows (exclude floating windows)
+  local normal_wins = 0
+  for _, win_id in ipairs(vim.api.nvim_list_wins()) do
+    local config = vim.api.nvim_win_get_config(win_id)
+    if config.relative == "" then  -- Normal window (not floating)
+      normal_wins = normal_wins + 1
+    end
+  end
 
-  if win_count > 1 then
-    vim.cmd("close")
+  if normal_wins > 1 then
+    local ok, err = pcall(vim.cmd, "close")
+    if not ok then
+      -- If close fails, try buffer delete instead
+      vim.cmd("bd!")
+    end
     return
   end
 
