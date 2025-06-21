@@ -48,6 +48,9 @@ vim.keymap.set("v", "<Space>p", '"+p', { silent = true })
 vim.keymap.set("n", "<Space>t", "<Space>ft", { remap = true, silent = true })
 vim.keymap.set("n", "<Space>gg", ":Neogit <CR>", { silent = true })
 vim.keymap.set("n", "<Space>gG", ":Neogit cwd=%:p:h<CR>", { silent = true })
+vim.keymap.set("n", "<Space>gs", function()
+  require("git-status-snacks").open()
+end, { silent = true, desc = "Git Status (tig-like)" })
 
 local function git_commit(commit_message)
   return require("snacks").scratch({
