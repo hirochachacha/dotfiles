@@ -8,20 +8,39 @@
 # Optional parameters:
 # @raycast.icon 🤖
 
-# set appChrome to "Google Chrome"
-# set appBrave to "Brave Browser"
-set appChrome to "Brave Browser"
-set appBrave to "Google Chrome"
+# set app1 to "Dia"
+# set app2 to "Brave Browser"
+
+# tell application "System Events"
+# 	set frontApp to name of first application process whose frontmost is true
+# end tell
+# 
+# if frontApp is app1 then
+# 	tell application app2 to activate
+# 	tell application "System Events" to set visible of process app1 to false
+# else if frontApp is app2 then
+# 	tell application "System Events" to set visible of process app2 to false
+# else
+#   tell application app1 to activate
+# end if
+
+set appName to "Zen"
+set bundleID to "app.zen-browser.zen"
 
 tell application "System Events"
-	set frontApp to name of first application process whose frontmost is true
+	set isRunning to (exists (processes where bundle identifier is bundleID))
 end tell
 
-if frontApp is appChrome then
-	tell application appBrave to activate
-	tell application "System Events" to set visible of process appChrome to false
-else if frontApp is appBrave then
-	tell application "System Events" to set visible of process appBrave to false
+if isRunning then
+	tell application "System Events"
+		set isFrontmost to (frontmost of process appName)
+	end tell
+
+	if isFrontmost then
+		tell application "System Events" to set visible of process appName to false
+	else
+		tell application id bundleID to activate
+	end if
 else
-  tell application appChrome to activate
+	tell application id bundleID to activate
 end if

@@ -76,7 +76,7 @@ zle -N magic-enter
 bindkey "^M" magic-enter
 
 alias j=z
-alias cd=z
+# alias cd=z
 alias vi=nvim
 alias cat=bat
 # alias find=fd
