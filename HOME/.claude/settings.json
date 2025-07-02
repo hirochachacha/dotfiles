@@ -47,7 +47,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "~/bin/fmt-lint-check.sh"
+            "command": "~/bin/fmt-lint-check.ts"
           }
         ]
       }
@@ -59,17 +59,6 @@
           {
             "type": "command",
             "command": "~/bin/notify.ts"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/bin/notify.ts claude stopped"
           }
         ]
       }

@@ -27,7 +27,7 @@ async function main() {
     const input = await new Response(Deno.stdin.readable).text();
     try {
       const json: NotificationInput = JSON.parse(input);
-      title = json.title;
+      title = json.title || "Claude";
       message = json.message;
     } catch {
       console.error("Error: Invalid JSON input");

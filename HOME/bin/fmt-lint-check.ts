@@ -139,9 +139,10 @@ const formatters: Record<string, (file: string) => Promise<void>> = {
 
   // JSON
   "json": async (file) => {
-    const content = await Deno.readTextFile(file);
-    const formatted = JSON.stringify(JSON.parse(content), null, 2);
-    await Deno.writeTextFile(file, formatted);
+    await runCommand(["deno", "fmt", file]);
+    // const content = await Deno.readTextFile(file);
+    // const formatted = JSON.stringify(JSON.parse(content), null, 2);
+    // await Deno.writeTextFile(file, formatted);
   },
 
   // XML
@@ -151,7 +152,8 @@ const formatters: Record<string, (file: string) => Promise<void>> = {
 
   // YAML
   "yaml,yml": async (file) => {
-    await runCommand(["yamllint", "-d", "relaxed", file], true);
+    await runCommand(["deno", "fmt", "--unstable-component", file]);
+    // await runCommand(["yamllint", "-d", "relaxed", file], true);
   },
 
   // TOML
@@ -161,34 +163,39 @@ const formatters: Record<string, (file: string) => Promise<void>> = {
 
   // Markdown
   "md": async (file) => {
-    await runCommand(["markdownlint", "--fix", file], true);
+    await runCommand(["deno", "fmt", file]);
+    // await runCommand(["markdownlint", "--fix", file], true);
   },
 
   // CSS and preprocessors
   "css,scss,sass,less": async (file) => {
-    await runCommand(["prettier", "--write", file], true);
+    await runCommand(["deno", "fmt", "--unstable-component", file]);
+    // await runCommand(["prettier", "--write", file], true);
   },
 
   // HTML
   "html,htm": async (file) => {
-    await runCommand(["prettier", "--write", file], true);
+    await runCommand(["deno", "fmt", "--unstable-component", file]);
+    // await runCommand(["prettier", "--write", file], true);
   },
 
   // Vue
   "vue": async (file) => {
-    await runCommand(["prettier", "--write", file]);
-    await runCommand(["eslint", "--fix", file], true);
+    await runCommand(["deno", "fmt", "--unstable-component", file]);
+    // await runCommand(["prettier", "--write", file]);
+    // await runCommand(["eslint", "--fix", file], true);
   },
 
   // Svelte
   "svelte": async (file) => {
-    await runCommand([
-      "prettier",
-      "--write",
-      "--plugin",
-      "prettier-plugin-svelte",
-      file,
-    ], true);
+    await runCommand(["deno", "fmt", "--unstable-component", file]);
+    // await runCommand([
+    //   "prettier",
+    //   "--write",
+    //   "--plugin",
+    //   "prettier-plugin-svelte",
+    //   file,
+    // ], true);
   },
 };
 
