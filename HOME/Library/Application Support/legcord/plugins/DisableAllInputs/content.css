@@ -1,0 +1,7 @@
+main div[contenteditable="true"] {
+  display: none !important;
+}
+
+div[class^="buttons__"] {
+  display: none !important;
+}
