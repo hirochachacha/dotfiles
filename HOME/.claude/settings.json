@@ -1,0 +1,78 @@
+{
+  "env": {},
+  "permissions": {
+    "allow": [
+      "Agent(*)",
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "LS(*)",
+      "MultiEdit(*)",
+      "NotebookEdit(*)",
+      "NotebookRead(*)",
+      "TodoRead(*)",
+      "TodoWrite(*)",
+      "WebFetch(*)",
+      "WebSearch(*)",
+      "bash(brew:*)",
+      "Bash(cargo:*)",
+      "Bash(cd:*)",
+      "Bash(chmod:*)",
+      "Bash(cp:*)",
+      "Bash(deno:*)",
+      "Bash(find:*)",
+      "Bash(git:*)",
+      "bash(grep:*)",
+      "bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "bash(rg:*)",
+      "bash(rm:*)",
+      "bash(timeout:*)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Write(.env)",
+      "Read(~/.ssh)",
+      "Write(~/.ssh)"
+    ]
+  },
+  "model": "opus",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|MultiEdit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/bin/fmt-lint-check.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/bin/notify.ts"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/bin/notify.ts claude stopped"
+          }
+        ]
+      }
+    ]
+  }
+}
