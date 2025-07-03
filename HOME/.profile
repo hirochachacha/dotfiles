@@ -12,7 +12,7 @@ fi
 # Paths
 #
 
-export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.deno/bin:$HOME/.go/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.claude/local:$HOME/bin:$HOME/.local/bin:$HOME/.deno/bin:$HOME/.go/bin:$HOME/.cargo/bin:$PATH"
 
 #
 # Browser

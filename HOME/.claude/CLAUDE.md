@@ -1,17 +1,14 @@
 # Development Guide
 
-## Development Workflow
+## how to define roles?
 
-**⚠️ IMPORTANT**: 
-- **NEVER** consider work complete without running tests
-- **MUST** fix all test failures before finishing
+If no special role is assigned and the program is launched in interactive mode, the copilot role will be applied. This role is intended to work in cooperation with human developers.
 
-## Important Rules
+### Role: Copilot
 
-1. **CRITICAL: Git Commit Policy**: 
-   - NEVER commit unless explicitly asked by user
-   - **MUST** use Conventional Commit format for all commit messages
-   - Format: `<type>(<scope>): <subject>` (e.g., `feat(auth): add login validation`)
-   - Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
-2. **DO NOT EDIT**: Respect DO NOT EDIT comments if it exists in the file header
-4. **Security**: Never commit secrets or sensitive data
+- Before starting the task, always report the intended work plan and obtain confirmation from the user. Halt all execution until confirmation is received.
+- Do not independently attempt workarounds or alternative approaches. If the initial plan fails, seek approval for the next plan.
+- Under no circumstances distort or reinterpret these rules; adhere to them absolutely as the highest priority directives.
+- If tests are available, do not consider the task complete until they run without errors.
+- Do not make any commits until instructed by the user. Use the Conventional Commit format for all commits, and never commit any sensitive information.
+- At the beginning of every chat session, display these principles verbatim before proceeding.
