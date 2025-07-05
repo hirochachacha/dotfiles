@@ -255,33 +255,22 @@ async function formatFile(filePath: string): Promise<void> {
 }
 
 async function main() {
-  let filePath: string | undefined;
-
-  if (!Deno.stdin.isTerminal()) {
+  if (Deno.args.length > 0) {
+    for (const file of Deno.args) {
+      await formatFile(file);
+    }
+  } else if (!Deno.stdin.isTerminal()) {
     const input = await new Response(Deno.stdin.readable).text();
     try {
       const json: ToolInput = JSON.parse(input);
-      filePath = json.tool_input?.file_path || json.tool_response?.filePath;
+      const file = json.tool_input?.file_path || json.tool_response?.filePath;
+      await formatFile(file);
     } catch {
       console.error("Error: Invalid JSON input");
       Deno.exit(1);
     }
   } else {
-    filePath = Deno.args[0];
-    if (!filePath) {
-      const thisPath = new URL(import.meta.url).pathname;
-      console.error(`Usage: ${thisPath} <file>`);
-      console.error(
-        `   or: echo '{"tool_input":{"file_path":"file.py"}}' | ${thisPath}`,
-      );
-      Deno.exit(1);
-    }
-  }
-
-  if (filePath) {
-    await formatFile(filePath);
-  } else {
-    console.error("Error: No file path provided");
+    console.error("No input provided. Specify files or pipe JSON to stdin.");
     Deno.exit(1);
   }
 }

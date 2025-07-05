@@ -77,15 +77,43 @@ bindkey "^M" magic-enter
 
 alias j=z
 # alias cd=z
-alias vi=nvim
+# alias vi=nvim
 alias cat=bat
 # alias find=fd
 alias ag=rg
+
+unalias vi 2>/dev/null
+vi() {
+  local vi=nvim
+  local input="$1"
+
+  # Remove file:// prefix if present
+  if [[ "$input" == file://* ]]; then
+    input="${input#file://}"
+  fi
+
+  # Now parse the potentially modified input
+  if [[ "$input" == *:*:* ]]; then
+    local file=${input%%:*}
+    local rest=${input#*:}
+    local line=${rest%%:*}
+    local col=${rest#*:}
+    $vi "+call cursor($line,$col)" "$file"
+  elif [[ "$input" == *:* ]]; then
+    local file=${input%%:*}
+    local line=${input##*:}
+    $vi "+$line" "$file"
+  else
+    $vi "$@"
+  fi
+}
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 source <(fzf --zsh)
+
+source $HOME/.config/zsh/dotenv.zsh
 
 #
 # Local configuration file.

@@ -23,17 +23,7 @@ async function main() {
   let title: string | undefined;
   let message: string | undefined;
 
-  if (!Deno.stdin.isTerminal()) {
-    const input = await new Response(Deno.stdin.readable).text();
-    try {
-      const json: NotificationInput = JSON.parse(input);
-      title = json.title || "Claude";
-      message = json.message;
-    } catch {
-      console.error("Error: Invalid JSON input");
-      Deno.exit(1);
-    }
-  } else {
+  if (Deno.args.length === 2) {
     title = Deno.args[0];
     message = Deno.args[1];
     if (!message) {
@@ -42,6 +32,16 @@ async function main() {
       console.error(
         `   or: echo '{"title": "mytitle", "message": "mymessage"}' | ${thisPath}`,
       );
+      Deno.exit(1);
+    }
+  } else if (!Deno.stdin.isTerminal()) {
+    const input = await new Response(Deno.stdin.readable).text();
+    try {
+      const json: NotificationInput = JSON.parse(input);
+      title = json.title || "Claude";
+      message = json.message;
+    } catch {
+      console.error("Error: Invalid JSON input");
       Deno.exit(1);
     }
   }
