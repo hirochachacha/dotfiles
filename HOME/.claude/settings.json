@@ -66,6 +66,17 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/bin/prevent-bypass-pre-commit-hook.ts"
+          }
+        ]
+      }
     ]
   }
 }
