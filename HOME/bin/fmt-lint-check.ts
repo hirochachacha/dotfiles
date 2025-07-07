@@ -199,8 +199,10 @@ const formatters: Record<string, (file: string) => Promise<void>> = {
   },
 };
 
-// コマンド実行ヘルパー
-async function runCommand(cmd: string[], ignoreError = false): Promise<void> {
+async function runCommand(
+  cmd: string[],
+  ignoreError = false,
+): Promise<{ success: boolean; stderr?: string }> {
   try {
     const command = new Deno.Command(cmd[0], {
       args: cmd.slice(1),
@@ -208,20 +210,26 @@ async function runCommand(cmd: string[], ignoreError = false): Promise<void> {
       stderr: "piped",
     });
 
-    const { code, stdout, stderr } = await command.output();
+    const { code, stderr } = await command.output();
+    const errorText = new TextDecoder().decode(stderr);
 
-    if (code !== 0 && !ignoreError) {
-      const errorText = new TextDecoder().decode(stderr);
-      console.error(`Error running ${cmd[0]}: ${errorText}`);
+    if (code !== 0) {
+      if (!ignoreError) {
+        console.error(`Error running ${cmd[0]}: ${errorText}`);
+        hasErrors = true;
+      }
+      return { success: false, stderr: errorText };
     }
+    return { success: true, stderr: errorText };
   } catch (error) {
     if (!ignoreError) {
       console.error(`Failed to run ${cmd[0]}: ${error.message}`);
+      hasErrors = true;
     }
+    return { success: false };
   }
 }
 
-// 拡張子からフォーマッターを探す
 function findFormatter(
   filePath: string,
 ): ((file: string) => Promise<void>) | null {
@@ -236,19 +244,37 @@ function findFormatter(
   return null;
 }
 
-// ファイルをフォーマット
+// Track if any files were modified or if any errors occurred
+let filesModified = false;
+let hasErrors = false;
+
 async function formatFile(filePath: string): Promise<void> {
-  // ファイルの存在確認
+  let originalStat;
   try {
-    await Deno.stat(filePath);
+    originalStat = await Deno.stat(filePath);
   } catch {
     console.error(`Error: File '${filePath}' not found`);
     Deno.exit(1);
   }
 
+  // Get original content to detect changes
+  const originalContent = await Deno.readTextFile(filePath);
+
   const formatter = findFormatter(filePath);
   if (formatter) {
     await formatter(filePath);
+
+    // Check if file was modified
+    const newContent = await Deno.readTextFile(filePath);
+    const newStat = await Deno.stat(filePath);
+
+    if (
+      originalContent !== newContent ||
+      originalStat.mtime?.getTime() !== newStat.mtime?.getTime()
+    ) {
+      filesModified = true;
+      console.log(`Formatted: ${filePath}`);
+    }
   } else {
     console.warn(`Warning: No formatter configured for file type: ${filePath}`);
   }
@@ -264,9 +290,13 @@ async function main() {
     try {
       const json: ToolInput = JSON.parse(input);
       const file = json.tool_input?.file_path || json.tool_response?.filePath;
+      if (!file) {
+        console.error("Error: No file path found in JSON input");
+        Deno.exit(1);
+      }
       await formatFile(file);
-    } catch {
-      console.error("Error: Invalid JSON input");
+    } catch (error) {
+      console.error("Error: Invalid JSON input", error);
       Deno.exit(1);
     }
   } else {
@@ -276,7 +306,12 @@ async function main() {
 }
 
 if (import.meta.main) {
-  main().catch((error) => {
+  main().then(() => {
+    // Exit with code 2 if files were modified or if there were any errors (for Claude Code hooks)
+    if (filesModified || hasErrors) {
+      Deno.exit(2);
+    }
+  }).catch((error) => {
     console.error(`Unexpected error: ${error.message}`);
     Deno.exit(1);
   });

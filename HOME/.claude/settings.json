@@ -24,19 +24,23 @@
       "Bash(deno:*)",
       "Bash(find:*)",
       "Bash(git:*)",
-      "bash(grep:*)",
-      "bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
       "Bash(mkdir:*)",
       "Bash(mv:*)",
-      "bash(rg:*)",
-      "bash(rm:*)",
-      "bash(timeout:*)"
+      "Bash(rg:*)",
+      "Bash(rm:*)",
+      "Bash(timeout:*)"
     ],
     "deny": [
       "Read(.env)",
       "Write(.env)",
       "Read(~/.ssh)",
-      "Write(~/.ssh)"
+      "Write(~/.ssh)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf ~/*)",
+      "Bash(rm -rf /*)"
     ]
   },
   "model": "opus",
