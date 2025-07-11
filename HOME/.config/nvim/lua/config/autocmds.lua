@@ -7,30 +7,26 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "typescript", "javascript" },
-  callback = function()
-    local deno_config = vim.fn.findfile("deno.json", ".;") ~= "" or vim.fn.findfile("deno.jsonc", ".;") ~= ""
+-- Handle deno:/* URLs
 
-    if deno_config then
-      vim.lsp.start({
-        name = "denols",
-        cmd = { "deno", "lsp" },
-        root_dir = vim.fn.getcwd(),
-        init_options = {
-          lint = true,
-          unstable = true,
-          suggest = {
-            imports = {
-              hosts = {
-                ["https://deno.land"] = true,
-                ["https://jsr.io"] = true,
-                ["https://esm.sh"] = true,
-              },
-            },
-          },
-        },
-      })
+vim.api.nvim_create_autocmd("BufReadCmd", {
+  pattern = "deno:/*",
+  callback = function(ev)
+    local bufnr = ev.buf
+    local uri = vim.api.nvim_buf_get_name(bufnr)
+    local client = vim.lsp.get_active_clients({ name = "denols" })[1]
+
+    if client then
+      client.request("deno/virtualTextDocument", { textDocument = { uri = uri } }, function(err, result)
+        if not err and result then
+          local lines = vim.split(result, "\n")
+          vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+          vim.api.nvim_set_option_value("filetype", "typescript", { buf = bufnr })
+          vim.api.nvim_set_option_value("modifiable", false, { buf = bufnr })
+          vim.api.nvim_set_option_value("modified", false, { buf = bufnr })
+          vim.api.nvim_set_option_value("readonly", true, { buf = bufnr })
+        end
+      end)
     end
   end,
 })
