@@ -222,9 +222,15 @@ async function runCommand(
     }
     return { success: true, stderr: errorText };
   } catch (error) {
-    if (!ignoreError) {
-      console.error(`Failed to run ${cmd[0]}: ${error.message}`);
-      hasErrors = true;
+    if (!(error instanceof Deno.errors.NotFound)) {
+      if (!ignoreError) {
+        console.error(
+          `Failed to run ${cmd[0]}: ${
+            error instanceof Error ? error.message : error
+          }`,
+        );
+        hasErrors = true;
+      }
     }
     return { success: false };
   }
