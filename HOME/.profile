@@ -50,6 +50,7 @@ export LESS='-F -g -i -M -R -S -w -X -z-4'
 #
 
 export CARGO_INCREMENTAL=true
+export RUSTC_WRAPPER=sccache
 
 #
 # Open telemetry

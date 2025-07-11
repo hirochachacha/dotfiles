@@ -18,10 +18,12 @@ async function main() {
       const [command, ...args] = parseCommand(json.tool_input.command || "");
 
       if (command === "git") {
-        if (args.includes("--no-verify") || args.includes("-n")) {
-          console.error("DO NOT BYPASS pre-commit hook");
+        if (args[0] === "commit" || args[0] === "push") {
+          if (args.includes("--no-verify") || args.includes("-n")) {
+            console.error("DO NOT BYPASS pre-commit hook");
 
-          Deno.exit(2);
+            Deno.exit(2);
+          }
         }
       }
     } catch {
