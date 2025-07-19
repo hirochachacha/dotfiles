@@ -16,5 +16,6 @@ cask "telegram"
 cask "the-unarchiver"
 cask "wezterm"
 cask "zed"
+cask "zen"
 mas "kindle", id: 302584613
 mas "spark", id: 6445813049
