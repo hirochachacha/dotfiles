@@ -20,7 +20,7 @@ return {
 	send_composed_key_when_right_alt_is_pressed = false,
 	-- font = wezterm.font("GoMono Nerd Font"),
 	use_ime = true,
-	font_size = 18.0,
+	font_size = 16.0,
 	color_scheme = "Solarized (dark) (terminal.sexy)",
 	-- color_scheme = "Solarized (light) (terminal.sexy)",
 	-- color_scheme = "Catppuccin Latte",

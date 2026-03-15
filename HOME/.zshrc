@@ -122,3 +122,6 @@ source $HOME/.config/zsh/dotenv.zsh
 if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
+
+# Added by Antigravity
+export PATH="/Users/hiro/.antigravity/antigravity/bin:$PATH"

@@ -2,14 +2,14 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title Toggle Mailer
+# @raycast.title Toggle Claude
 # @raycast.mode silent
 
 # Optional parameters:
 # @raycast.icon 🤖
 
-set appName to "Spark"
-set bundleID to "com.readdle.smartemail-Mac"
+set appName to "Claude"
+set bundleID to "com.anthropic.claudefordesktop"
 
 tell application "System Events"
 	set isRunning to (exists (processes where bundle identifier is bundleID))

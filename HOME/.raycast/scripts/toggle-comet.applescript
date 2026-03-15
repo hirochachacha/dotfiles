@@ -2,14 +2,14 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title Toggle Mailer
+# @raycast.title Toggle Comet
 # @raycast.mode silent
 
 # Optional parameters:
 # @raycast.icon 🤖
 
-set appName to "Spark"
-set bundleID to "com.readdle.smartemail-Mac"
+set appName to "Comet"
+set bundleID to "ai.perplexity.comet"
 
 tell application "System Events"
 	set isRunning to (exists (processes where bundle identifier is bundleID))

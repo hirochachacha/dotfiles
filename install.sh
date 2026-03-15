@@ -4,6 +4,14 @@ set -ex
 
 DOTFILES_DIR="$HOME/dotfiles"
 
+install_dotfiles() {
+  if [ -d "$DOTFILES_DIR" ]; then
+    cd $DOTFILES_DIR && git pull
+  else
+    git clone --depth 1 https://github.com/hirochachacha/dotfiles.git "$DOTFILES_DIR"
+  fi
+}
+
 install_homebrew() {
   if ! command -v brew &>/dev/null; then
     export PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:$PATH"
@@ -67,9 +75,7 @@ main() {
     exit 1
   fi
 
-  if [ ! -d "$DOTFILES_DIR" ]; then
-    git clone --depth 1 https://github.com/hirochachacha/dotfiles.git "$DOTFILES_DIR"
-  fi
+  install_dotfiles
 
   install_homebrew
 
