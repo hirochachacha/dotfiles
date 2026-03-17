@@ -76,3 +76,8 @@ export OTEL_LOGS_EXPORT_INTERVAL=5000    # 5sec(default: 5000ms)
 if [[ -f "$HOME/.profile.local" ]]; then
   source "$HOME/.profile.local"
 fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/hiro/.lmstudio/bin"
+# End of LM Studio CLI section
+

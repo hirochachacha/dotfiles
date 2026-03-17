@@ -125,3 +125,8 @@ fi
 
 # Added by Antigravity
 export PATH="/Users/hiro/.antigravity/antigravity/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/hiro/.lmstudio/bin"
+# End of LM Studio CLI section
+
