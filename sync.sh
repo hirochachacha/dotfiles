@@ -4,7 +4,7 @@ set -ex
 
 DOTFILES_DIR="$HOME/dotfiles"
 
-install_dotfiles() {
+sync_dotfiles() {
   if [ -d "$DOTFILES_DIR" ]; then
     cd $DOTFILES_DIR && git pull
   else
@@ -24,7 +24,9 @@ install_homebrew() {
   fi
 }
 
-install_packages() {
+sync_packages() {
+  install_homebrew
+
   export HOMEBREW_NO_AUTO_UPDATE=1
 
   # Install CLI packages
@@ -75,11 +77,9 @@ main() {
     exit 1
   fi
 
-  install_dotfiles
+  sync_dotfiles
 
-  install_homebrew
-
-  install_packages
+  sync_packages
 
   create_hardlinks "$DOTFILES_DIR/HOME" "$HOME"
 
