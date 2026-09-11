@@ -6,16 +6,13 @@
       "selectedType": "oauth-personal"
     }
   },
-  "experimental": {
-    "plan": true
-  },
-  "tools": {
-    "allowed": [
-      "run_shell_command(git)"
-    ]
-  },
+  "experimental": {},
   "context": {
-    "fileName": ["AGENTS.md", "CONTEXT.md", "GEMINI.md"]
+    "fileName": [
+      "AGENTS.md",
+      "CONTEXT.md",
+      "GEMINI.md"
+    ]
   },
   "hooks": {
     "AfterTool": [
@@ -46,6 +43,12 @@
       "enabled": true,
       "maxAge": "30d",
       "warningAcknowledged": true
+    },
+    "plan": {
+      "enabled": true
     }
+  },
+  "agents": {
+    "overrides": {}
   }
 }

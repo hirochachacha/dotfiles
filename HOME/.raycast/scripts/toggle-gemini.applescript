@@ -2,14 +2,14 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title Toggle ChatGPT
+# @raycast.title Toggle Gemini
 # @raycast.mode silent
 
 # Optional parameters:
 # @raycast.icon 🤖
 
-set appName to "ChatGPT"
-set bundleID to "com.openai.codex"
+set appName to "Gemini"
+set bundleID to "com.google.GeminiMacOS"
 
 tell application "System Events"
 	set isRunning to (exists (processes where bundle identifier is bundleID))

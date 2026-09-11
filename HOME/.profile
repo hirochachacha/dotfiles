@@ -12,7 +12,9 @@ fi
 # Paths
 #
 
-export PATH="$HOME/.claude/local:$HOME/bin:$HOME/.local/bin:$HOME/.deno/bin:$HOME/.go/bin:$HOME/.cargo/bin:$PATH"
+export GOPATH=$HOME/.go
+
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.bun/bin:$HOME/.deno/bin:$HOME/.go/bin:$HOME/.cargo/bin:$PATH"
 
 #
 # Browser
@@ -76,8 +78,3 @@ export OTEL_LOGS_EXPORT_INTERVAL=5000    # 5sec(default: 5000ms)
 if [[ -f "$HOME/.profile.local" ]]; then
   source "$HOME/.profile.local"
 fi
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/hiro/.lmstudio/bin"
-# End of LM Studio CLI section
-

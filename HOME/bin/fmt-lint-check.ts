@@ -1,5 +1,7 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --allow-run
 
+const USE_EXIT_CODE = false
+
 interface ToolInput {
   tool_input?: { file_path?: string };
   tool_response?: { filePath?: string };
@@ -125,16 +127,21 @@ async function main() {
   }
 
   if (errors.length > 0) {
-    console.log(JSON.stringify(
-      {
-        suppressOutput: true,
-        decision: "block",
-        reason: errors,
-      },
-      null,
-      2,
-    ));
-    Deno.exit(0);
+    if (USE_EXIT_CODE) {
+      console.error(errors)
+      Deno.exit(2);
+    } else {
+      console.log(JSON.stringify(
+        {
+          suppressOutput: true,
+          decision: "block",
+          reason: errors,
+        },
+        null,
+        2,
+      ));
+      Deno.exit(0);
+    }
   }
 
   const newContent = await Deno.readTextFile(filePath);
@@ -144,16 +151,21 @@ async function main() {
     originalContent !== newContent ||
     originalStat.mtime?.getTime() !== newStat.mtime?.getTime()
   ) {
-    console.log(JSON.stringify(
-      {
-        suppressOutput: true,
-        decision: "block",
-        reason: `${filePath} was modified by formatter`,
-      },
-      null,
-      2,
-    ));
-    Deno.exit(0);
+    if (USE_EXIT_CODE) {
+      console.error(`${filePath} was modified by formatter`)
+      Deno.exit(2);
+    } else {
+      console.log(JSON.stringify(
+        {
+          suppressOutput: true,
+          decision: "block",
+          reason: `${filePath} was modified by formatter`,
+        },
+        null,
+        2,
+      ));
+      Deno.exit(0);
+    }
   }
 }
 
