@@ -15,6 +15,26 @@ wezterm.on("gui-attached", function(_)
 	end
 end)
 
+local function spawn_lima_tab_with_cwd(window, pane)
+	local cwd_uri = pane:get_current_working_dir()
+	local args = { "/opt/homebrew/bin/limactl", "shell", "--shell", "zsh" }
+
+	if cwd_uri then
+		local path = cwd_uri.file_path
+		table.insert(args, "--workdir")
+		table.insert(args, path)
+	end
+
+	table.insert(args, "default")
+
+	window:perform_action(
+		wezterm.action.SpawnCommandInNewTab({
+			args = args,
+		}),
+		pane
+	)
+end
+
 return {
 	send_composed_key_when_left_alt_is_pressed = false,
 	send_composed_key_when_right_alt_is_pressed = false,
@@ -39,7 +59,13 @@ return {
 		--   action = wezterm.action.EmitEvent 'double-click',
 		-- },
 	},
+
 	keys = {
+		{
+			key = "t",
+			mods = "CMD",
+			action = wezterm.action_callback(spawn_lima_tab_with_cwd),
+		},
 		{
 			key = "LeftArrow",
 			mods = "SUPER",
@@ -61,4 +87,5 @@ return {
 			action = wezterm.action.MoveTabRelative(1),
 		},
 	},
+	default_prog = { "/opt/homebrew/bin/limactl", "shell", "--shell", "zsh", "default" },
 }

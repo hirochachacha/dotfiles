@@ -8,6 +8,8 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+export HOMEBREW_NO_ASK=1
+
 #
 # Paths
 #

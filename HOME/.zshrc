@@ -123,10 +123,14 @@ if [[ -f "$HOME/.zshrc.local" ]]; then
   source "$HOME/.zshrc.local"
 fi
 
-# Added by Antigravity
-export PATH="/Users/hiro/.antigravity/antigravity/bin:$PATH"
+if [[ "$HOST" == lima-* ]]; then
+  autoload -Uz add-zsh-hook
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/hiro/.lmstudio/bin"
-# End of LM Studio CLI section
+  function osc7_cwd() {
+    local url_path=""
+    url_path="$(print -v -P "%~" 2>/dev/null || true)"
+    printf "\e]7;file://%s%s\e\\" "${HOST}" "${PWD}"
+  }
 
+  add-zsh-hook -Uz precmd osc7_cwd
+fi

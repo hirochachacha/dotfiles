@@ -21,7 +21,6 @@ Backward compatibility is not a default requirement.
 Do not add:
 - compatibility flags
 - aliases
-- fallbacks
 - deprecated paths
 - migration shims
 - dual old/new behavior
