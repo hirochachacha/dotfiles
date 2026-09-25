@@ -92,12 +92,8 @@ _dotenv_parse_env() {
             local key="${match[1]}"
             local value="${match[2]}"
             
-            # Remove surrounding quotes if present
-            if [[ "$value" =~ ^\"(.*)\"$ ]] || [[ "$value" =~ ^\'(.*)\'$ ]]; then
-                value="${match[1]}"
-            fi
-            
-            export "$key"="$value"
+            # Evaluate approved values with zsh expansion and quoting rules.
+            eval "export ${key}=${value}"
         fi
     done < "$env_path"
 }
