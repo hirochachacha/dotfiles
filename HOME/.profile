@@ -57,23 +57,6 @@ export CARGO_INCREMENTAL=true
 export RUSTC_WRAPPER=sccache
 
 #
-# Open telemetry
-#
-
-export OTEL_DENO=true # for deno
-
-export CLAUDE_CODE_ENABLE_TELEMETRY=1 # for claude code
-export OTEL_LOG_USER_PROMPTS=1        # show user prompts
-
-export OTEL_METRICS_EXPORTER=otlp
-export OTEL_LOGS_EXPORTER=otlp
-export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
-# export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
-
-export OTEL_METRIC_EXPORT_INTERVAL=10000 # 10sec(default: 60000ms)
-export OTEL_LOGS_EXPORT_INTERVAL=5000    # 5sec(default: 5000ms)
-
-#
 # Local configuration file. e.g ACCESS_TOKEN, API_KEY, etc.
 #
 
