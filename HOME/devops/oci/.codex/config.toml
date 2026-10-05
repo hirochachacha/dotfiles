@@ -1,0 +1,3 @@
+[mcp_servers.oci]
+command = "uvx"
+args = ["oracle.oci-api-mcp-server"]

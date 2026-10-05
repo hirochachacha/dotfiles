@@ -1,0 +1,6 @@
+[mcp_servers.awslabs-core-mcp-server]
+command = "uvx"
+args = ["awslabs.core-mcp-server@latest"]
+
+[mcp_servers.awslabs-core-mcp-server.env]
+FASTMCP_LOG_LEVEL = "ERROR"
